@@ -11,7 +11,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install && npm build'
+        sh 'npm install && npm run build'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'sudo /var/lib/jenkins/scripts/deploy.sh'
       }
     }
   }
