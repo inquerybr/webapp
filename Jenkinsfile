@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'sudo /var/lib/jenkins/scripts/deploy.sh'
+        sh '/var/lib/jenkins/scripts/deploy.sh'
       }
     }
   }
