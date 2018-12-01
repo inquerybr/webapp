@@ -14,6 +14,7 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'npm run build'
+        stash includes: 'build/**/*', name: 'webapp'
       }
     }
     stage('Deploy') {
@@ -21,6 +22,7 @@ pipeline {
       steps {
         sshagent(['inquery.com.br']) {
           sh 'ssh deploy@inquery.com.br rm -rf /var/www/inquery.com.br/html/*'
+          unstash 'webapp'
           sh 'ls -la'
           sh 'scp -rp build/* deploy@inquery.com.br:/var/www/inquery.com.br/html'
         }
