@@ -20,6 +20,7 @@ pipeline {
       }
     }
     stage('Deploy') {
+      agent any
       steps {
         sshagent(['inquery.com.br']) {
           sh 'ssh -o StrictHostKeyChecking=no -l deploy inquery.com.br uname -a'
