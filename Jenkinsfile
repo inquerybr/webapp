@@ -23,7 +23,6 @@ pipeline {
       agent any
       steps {
         sshagent(['inquery.com.br']) {
-          sh 'ssh -o StrictHostKeyChecking=no -l deploy inquery.com.br uname -a'
           sh 'ssh deploy@inquery.com.br rm -rf /var/www/inquery.com.br/html/*'
           sh 'scp -rp ./build/*:deploy@inquery.com.br:/var/www/inquery.com.br/html'
         }
