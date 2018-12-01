@@ -1,21 +1,18 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:10.14.0-alpine'
-    }
-  }
-  environment {
-    npm_config_cache = 'npm-cache'
-    HOME = '.'
-  }
+  agent none
   stages {
-    stage('Install') {
+    stage('Build') {
+      agent {
+        docker {
+          image 'node:10.14.0-alpine'
+        }
+      }
+      environment {
+        npm_config_cache = 'npm-cache'
+        HOME = '.'
+      }
       steps {
         sh 'npm install'
-      }
-    }
-    stage('Build') {
-      steps {
         sh 'npm run build'
       }
     }
