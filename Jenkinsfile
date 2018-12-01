@@ -1,7 +1,6 @@
 pipeline {
   agent {
-    docker {
-      dockerfile true
+    dockerfile {
       args '-v /var/www/inquery.com.br/html:/app/build -e USERID=$UID'
     }
   }
