@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'node:10.14.0-alpine'
-      args '-v /var/www/inquery.com.br/html/:./build -e USERID=$UID'
+      dockerfile true
+      args '-v /var/www/inquery.com.br/html:/app/build -e USERID=$UID'
     }
   }
   environment {
